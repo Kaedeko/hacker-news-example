@@ -8,8 +8,7 @@
 		"test": "ng test",
 		"lint": "ng lint",
 		"e2e": "ng e2e",
-		"pretty": "pretty-quick --staged",
-		"precommit": "run-s pretty lint"
+		"pretty": "pretty-quick --staged"
 	},
 	"private": true,
 	"dependencies": {
