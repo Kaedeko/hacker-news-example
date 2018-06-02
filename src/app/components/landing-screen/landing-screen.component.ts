@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
+import * as timeago from "time-ago";
 
 import { DataService } from "../../services/data.service";
 import { IApiItem } from "../../services/data.types";
@@ -44,6 +45,17 @@ export class LandingScreenComponent implements OnInit {
 	 */
 	get storyData(): IApiItem[] {
 		return this._storyData;
+	}
+
+	/**
+	 * Return the amount of time in words
+	 *
+	 * @param {number} timestamp Timestamp in ms
+	 * @returns {string} The time passed in words
+	 * @memberof LandingScreenComponent
+	 */
+	public getTime(timestamp: number): string {
+		return timeago.ago(timestamp);
 	}
 
 	/**

@@ -10,14 +10,14 @@
       {{story.title}}
     </mat-card-title>
     <mat-card-subtitle>
-      Posted by {{story.by}}, {{story.time}}
+      Posted by {{story.by}}, {{getTime(story.time * 1000)}}
     </mat-card-subtitle>
   </mat-card>
   <mat-card id="comments-card">
     <mat-card-content>
       <ng-container *ngFor="let comment of comments">
         <p class="comment-text" [innerHTML]="comment.text"></p>
-        <p class="comment-metadata">{{comment.by}}, {{comment.time}}</p>
+        <p class="comment-metadata">{{comment.by}}, {{getTime(comment.time * 1000)}}</p>
         <mat-divider></mat-divider>
       </ng-container>
     </mat-card-content>

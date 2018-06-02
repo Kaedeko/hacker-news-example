@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { switchMap, tap } from "rxjs/operators";
+import * as timeago from "time-ago";
 
 import { DataService } from "../../services/data.service";
 import { IApiItem } from "../../services/data.types";
@@ -82,6 +83,17 @@ export class StoryViewComponent implements OnInit {
 	 */
 	get story(): IApiItem {
 		return this._story;
+	}
+
+	/**
+	 * Return the amount of time in words
+	 *
+	 * @param {number} timestamp Timestamp in ms
+	 * @returns {string} The time passed in words
+	 * @memberof StoryViewComponent
+	 */
+	public getTime(timestamp: number): string {
+		return timeago.ago(timestamp);
 	}
 
 	/**
