@@ -9,6 +9,7 @@ This project was intitially generated with [Angular CLI](https://github.com/angu
 | Typescript Usage                                  | ✅   |
 | List of "Best Stories"                            | ✅   |
 | Allow viewing of top level comments on each story | ✅   |
+| Customised CSS                                    | ❌   |
 | Allow viewing of child comments on each story     | ❌   |
 | Transition animations                             | ❌   |
 | Unit testing                                      | ❌   |
