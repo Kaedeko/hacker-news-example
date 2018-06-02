@@ -1,17 +1,20 @@
 import { HttpClientModule } from "@angular/common/http";
-import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterModule, Routes } from "@angular/router";
 
 import { AppComponent } from "./app.component";
+import { LandingScreenComponent } from "./components/landing-screen/landing-screen.component";
+import { StoryViewComponent } from "./components/story-view/story-view.component";
 import { MaterialModule } from "./material/material.module";
 
-import { LandingScreenComponent } from "./components/landing-screen/landing-screen.component";
-import { environment } from "../environments/environment.prod";
-import { StoryViewComponent } from "./components/story-view/story-view.component";
-
-const appRoutes: Routes = [{ path: "", component: LandingScreenComponent }];
+const appRoutes: Routes = [
+	{ path: "", component: LandingScreenComponent },
+	{ path: "story/:id", component: StoryViewComponent },
+	{ path: "story", redirectTo: "", pathMatch: "full" },
+	{ path: "**", redirectTo: "" }
+];
 
 @NgModule({
 	declarations: [AppComponent, LandingScreenComponent, StoryViewComponent],

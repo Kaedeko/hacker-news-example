@@ -1,5 +1,8 @@
+<mat-toolbar color="primary">
+  <span>Hacker News Example</span>
+</mat-toolbar>
 <mat-list>
-  <mat-list-item *ngFor="let story of storyData">
+  <mat-list-item *ngFor="let story of storyData" [routerLink]="'/story/' + story.id">
     <span class="score-avatar" matListAvatar>{{story.score}}</span>
     <h4 matLine>{{story.title}}</h4>
     <p matLine>Posted by {{story.by}} with {{story.descendants}} comments</p>
