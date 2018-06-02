@@ -4,7 +4,7 @@
   </button>
   <span>Story Details</span>
 </mat-toolbar>
-<p>
+<ng-container *ngIf="story">
   <mat-card id="story-card">
     <mat-card-title>
       {{story.title}}
@@ -22,4 +22,4 @@
       </ng-container>
     </mat-card-content>
   </mat-card>
-</p>
+</ng-container>
