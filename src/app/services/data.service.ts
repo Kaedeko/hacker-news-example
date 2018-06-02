@@ -3,7 +3,7 @@ import { Observable, Subject } from "rxjs";
 import { tap } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
-import { IStory } from "./data.types";
+import { IApiItem } from "./data.types";
 
 /**
  * Service responsible for fetching and updating the data
@@ -18,8 +18,10 @@ import { IStory } from "./data.types";
 })
 export class DataService {
 	private _storyList$ = new Subject<number[]>();
-	private _storyData$ = new Subject<IStory[]>();
-	private _storyDataArray: IStory[] = [];
+	private _storyData$ = new Subject<IApiItem[]>();
+	private _commentData$ = new Subject<IApiItem[]>();
+	private _storyDataArray: IApiItem[] = [];
+	private _commentDataArray: IApiItem[] = [];
 
 	/**
 	 * Creates an instance of DataService.
@@ -59,22 +61,44 @@ export class DataService {
 	 * @memberof DataService
 	 */
 	private _fetchStory(id: number): void {
-		this._http
-			.get<IStory>(`${environment.restUri}item/${id}.json`)
+		this._fetchItem(id, this._storyDataArray, this._storyData$).subscribe();
+	}
+
+	private _fetchComment(id: number): void {
+		this._fetchItem(id, this._commentDataArray, this._commentData$).subscribe();
+	}
+
+	/**
+	 * Function to fetch the entirey of a given item from
+	 * the Hacker News API
+	 *
+	 * @private
+	 * @param {number} id The item ID to fetch
+	 * @param {IApiItem[]} dataArray The data array to update
+	 * @param {Subject<IApiItem[]>} dataSubject$ The data subject to update
+	 * @returns {Observable<IApiItem>} The observable of the request
+	 * @memberof DataService
+	 */
+	private _fetchItem(
+		id: number,
+		dataArray: IApiItem[],
+		dataSubject$: Subject<IApiItem[]>
+	): Observable<IApiItem> {
+		return this._http
+			.get<IApiItem>(`${environment.restUri}item/${id}.json`)
 			.pipe(
 				tap(value => {
-					const storyIndex = this._storyDataArray.findIndex(story => {
-						return story.id === id;
+					const itemIndex = dataArray.findIndex(comment => {
+						return comment.id === id;
 					});
-					if (storyIndex !== -1) {
-						this._storyDataArray[storyIndex] = value;
+					if (itemIndex !== -1) {
+						dataArray[itemIndex] = value;
 					} else {
-						this._storyDataArray.push(value);
+						dataArray.push(value);
 					}
-					this._storyData$.next(this._storyDataArray);
+					dataSubject$.next(dataArray);
 				})
-			)
-			.subscribe();
+			);
 	}
 
 	/**
@@ -92,10 +116,10 @@ export class DataService {
 	 * The array of story data objects, keyed by their ID
 	 *
 	 * @readonly
-	 * @type {Observable<IStory[]>}
+	 * @type {Observable<IApiItem[]>}
 	 * @memberof DataService
 	 */
-	get storyData$(): Observable<IStory[]> {
+	get storyData$(): Observable<IApiItem[]> {
 		return this._storyData$;
 	}
 }

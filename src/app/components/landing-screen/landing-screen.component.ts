@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../services/data.service";
 import { tap, map, first } from "rxjs/operators";
-import { IStory } from "../../services/data.types";
+import { IApiItem } from "../../services/data.types";
 
 @Component({
 	selector: "app-landing-screen",
@@ -9,7 +9,7 @@ import { IStory } from "../../services/data.types";
 	styleUrls: ["./landing-screen.component.scss"]
 })
 export class LandingScreenComponent implements OnInit {
-	private _storyData: IStory[] = [];
+	private _storyData: IApiItem[] = [];
 
 	constructor(private _data: DataService) {}
 
@@ -27,7 +27,7 @@ export class LandingScreenComponent implements OnInit {
 			.subscribe();
 	}
 
-	get storyData(): IStory[] {
+	get storyData(): IApiItem[] {
 		return this._storyData;
 	}
 }
