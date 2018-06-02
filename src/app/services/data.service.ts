@@ -45,10 +45,8 @@ export class DataService {
 	 * @returns {Observable<IBestStories>}
 	 * @memberof DataService
 	 */
-	public fetchBestStories(): Observable<IBestStories> {
-		return this._http.get<IBestStories>(
-			`${environment.restUri}/beststories.json`
-		);
+	public fetchBestStories(): Observable<number[]> {
+		return this._http.get<number[]>(`${environment.restUri}/beststories.json`);
 	}
 
 	/**
@@ -62,7 +60,11 @@ export class DataService {
 	private _fetchStory(id: number): void {
 		this._http
 			.get<Observable<any>>(`${environment.restUri}item/${id}.json`)
-			.pipe(tap(value => console.log(value)))
+			.pipe(
+				tap(value => {
+					this._storyData[id] = value;
+				})
+			)
 			.subscribe();
 	}
 
@@ -73,7 +75,11 @@ export class DataService {
 	 * @type {Observable<any>}
 	 * @memberof DataService
 	 */
-	get storyList$(): Observable<any> {
+	get storyList$(): Observable<number[]> {
 		return this._storyList;
+	}
+
+	get storyData$(): Observable<any> {
+		return this._storyData;
 	}
 }
