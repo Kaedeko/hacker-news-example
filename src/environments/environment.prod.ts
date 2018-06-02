@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+	production: true,
+	restUri: "https://hacker-news.firebaseio.com/v0/"
 };
