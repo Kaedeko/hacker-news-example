@@ -12,9 +12,31 @@ import { IApiItem } from "../../services/data.types";
 	styleUrls: ["./story-view.component.scss"]
 })
 export class StoryViewComponent implements OnInit {
+	/**
+	 * The story being displayed on this page
+	 *
+	 * @private
+	 * @type {IApiItem}
+	 * @memberof StoryViewComponent
+	 */
 	private _story: IApiItem;
+	/**
+	 * The first level of comments on the story.
+	 * The sub comments are not included
+	 *
+	 * @private
+	 * @type {IApiItem[]}
+	 * @memberof StoryViewComponent
+	 */
 	private _comments: IApiItem[] = [];
 
+	/**
+	 * Creates an instance of StoryViewComponent.
+	 * @param {DataService} _data
+	 * @param {ActivatedRoute} _route
+	 * @param {Router} _router
+	 * @memberof StoryViewComponent
+	 */
 	constructor(
 		private _data: DataService,
 		private _route: ActivatedRoute,
@@ -34,21 +56,43 @@ export class StoryViewComponent implements OnInit {
 				}),
 				tap(item => {
 					this._story = item;
-					this._story.kids.forEach(id => this.fetchComments(id).subscribe());
+					this._story.kids.forEach(id => this.fetchComment(id).subscribe());
 				})
 			)
 			.subscribe();
 	}
 
+	/**
+	 * Fetches the top level of comments on the story.
+	 *
+	 * @readonly
+	 * @type {IApiItem[]}
+	 * @memberof StoryViewComponent
+	 */
 	get comments(): IApiItem[] {
 		return this._comments;
 	}
 
+	/**
+	 * Fetches the story object for this page
+	 *
+	 * @readonly
+	 * @type {IApiItem}
+	 * @memberof StoryViewComponent
+	 */
 	get story(): IApiItem {
 		return this._story;
 	}
 
-	private fetchComments(id: number): Observable<IApiItem> {
+	/**
+	 * Downloads the comment with the provided ID
+	 *
+	 * @private
+	 * @param {number} id The ID of the comment to be downloaded
+	 * @returns {Observable<IApiItem>}
+	 * @memberof StoryViewComponent
+	 */
+	private fetchComment(id: number): Observable<IApiItem> {
 		return this._data.fetchItem(id).pipe(
 			tap(item => {
 				const itemIndex = this._comments.findIndex(comment => {
