@@ -29,7 +29,7 @@ export class LandingScreenComponent implements OnInit {
 			.pipe(
 				tap(data => {
 					// For every story, get the rest of the data about it
-					data.forEach(index => this.fetchStory(index).subscribe());
+					data.forEach(id => this.fetchStory(id).subscribe());
 				})
 			)
 			.subscribe();
