@@ -63,7 +63,14 @@ export class DataService {
 			.get<IStory>(`${environment.restUri}item/${id}.json`)
 			.pipe(
 				tap(value => {
-					this._storyDataArray[id] = value;
+					const storyIndex = this._storyDataArray.findIndex(story => {
+						return story.id === id;
+					});
+					if (storyIndex !== -1) {
+						this._storyDataArray[storyIndex] = value;
+					} else {
+						this._storyDataArray.push(value);
+					}
 					this._storyData$.next(this._storyDataArray);
 				})
 			)

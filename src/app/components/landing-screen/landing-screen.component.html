@@ -1,7 +1,9 @@
 <p>
   <mat-list>
-    <mat-list-item *ngFor="let id of storyList">
-      {{storyData(id)}}
+    <mat-list-item *ngFor="let story of storyData">
+      <span class="score-avatar" matListAvatar>{{story.score}}</span>
+      <h4 matLine>{{story.title}}</h4>
+      <p matLine>Posted by {{story.by}} with {{story.descendants}} comments</p>
     </mat-list-item>
   </mat-list>
 </p>
