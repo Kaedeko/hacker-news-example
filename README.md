@@ -3,18 +3,19 @@
 This is a showcase piece of a [Hacker News](https://news.ycombinator.com/) clone.
 
 This project was intitially generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.5, with Sass support.
-| Functionality Checklist | |
-|--------------------------------------------------- |--- |
-| Typescript Usage | ✅ |
-| List of "Best Stories" | ✅ |
-| Allow viewing of top level comments on each story | ✅ |
-| Allow viewing of child comments on each story | ❌ |
-| Transition animations | ❌ |
-| Unit testing | ❌ |
-| End-to-end testing | ❌ |
-| Use of Sass specific functionality | ❌ |
-| CSS-in-JS | ❌ |
-| Data Pagination | ❌ |
+
+| Functionality Checklist                           |     |
+| ------------------------------------------------- | --- |
+| Typescript Usage                                  | ✅   |
+| List of "Best Stories"                            | ✅   |
+| Allow viewing of top level comments on each story | ✅   |
+| Allow viewing of child comments on each story     | ❌   |
+| Transition animations                             | ❌   |
+| Unit testing                                      | ❌   |
+| End-to-end testing                                | ❌   |
+| Use of Sass specific functionality                | ❌   |
+| CSS-in-JS                                         | ❌   |
+| Data Pagination                                   | ❌   |
 
 ## Development server
 
