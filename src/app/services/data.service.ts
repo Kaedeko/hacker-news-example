@@ -3,7 +3,7 @@ import { Observable, Subject } from "rxjs";
 import { tap } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
-import { IBestStories } from "./data.types";
+import { IStory } from "./data.types";
 
 /**
  * Service responsible for fetching and updating the data
@@ -17,8 +17,9 @@ import { IBestStories } from "./data.types";
 	providedIn: "root"
 })
 export class DataService {
-	private _storyList = new Subject<any>();
-	private _storyData = new Subject<any>();
+	private _storyList$ = new Subject<number[]>();
+	private _storyData$ = new Subject<IStory[]>();
+	private _storyDataArray: IStory[] = [];
 
 	/**
 	 * Creates an instance of DataService.
@@ -32,7 +33,7 @@ export class DataService {
 				tap(data => {
 					// For every story, get the rest of the data about it
 					data.forEach(index => this._fetchStory(index));
-					this._storyList.next(data);
+					this._storyList$.next(data);
 				})
 			)
 			.subscribe();
@@ -42,7 +43,7 @@ export class DataService {
 	 * Fetches an array of story IDs from the best stories endpoint
 	 * of the Hacker News API
 	 *
-	 * @returns {Observable<IBestStories>}
+	 * @returns {Observable<number[]>}
 	 * @memberof DataService
 	 */
 	public fetchBestStories(): Observable<number[]> {
@@ -59,10 +60,11 @@ export class DataService {
 	 */
 	private _fetchStory(id: number): void {
 		this._http
-			.get<Observable<any>>(`${environment.restUri}item/${id}.json`)
+			.get<IStory>(`${environment.restUri}item/${id}.json`)
 			.pipe(
 				tap(value => {
-					this._storyData[id] = value;
+					this._storyDataArray[id] = value;
+					this._storyData$.next(this._storyDataArray);
 				})
 			)
 			.subscribe();
@@ -72,14 +74,21 @@ export class DataService {
 	 * The list of ID numbers to be displayed
 	 *
 	 * @readonly
-	 * @type {Observable<any>}
+	 * @type {Observable<number[]>}
 	 * @memberof DataService
 	 */
 	get storyList$(): Observable<number[]> {
-		return this._storyList;
+		return this._storyList$;
 	}
 
-	get storyData$(): Observable<any> {
-		return this._storyData;
+	/**
+	 * The array of story data objects, keyed by their ID
+	 *
+	 * @readonly
+	 * @type {Observable<IStory[]>}
+	 * @memberof DataService
+	 */
+	get storyData$(): Observable<IStory[]> {
+		return this._storyData$;
 	}
 }

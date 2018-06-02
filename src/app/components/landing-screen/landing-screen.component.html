@@ -1,3 +1,7 @@
 <p>
-  landing-screen works!
+  <mat-list>
+    <mat-list-item *ngFor="let id of storyList">
+      {{storyData(id)}}
+    </mat-list-item>
+  </mat-list>
 </p>
