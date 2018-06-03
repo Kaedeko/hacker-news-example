@@ -9,5 +9,5 @@ import { stateFadeAnimation } from "./animations";
 	animations: [stateFadeAnimation]
 })
 export class AppComponent {
-	title = "app";
+	title = "Hacker News Example";
 }
