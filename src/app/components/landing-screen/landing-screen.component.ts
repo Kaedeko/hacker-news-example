@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from "@angular/animations";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
@@ -9,7 +10,15 @@ import { IApiItem } from "../../services/data.types";
 @Component({
 	selector: "app-landing-screen",
 	templateUrl: "./landing-screen.component.html",
-	styleUrls: ["./landing-screen.component.scss"]
+	styleUrls: ["./landing-screen.component.scss"],
+	animations: [
+		trigger("loadIn", [
+			transition(":enter", [
+				style({ transform: "translateX(100%)" }),
+				animate("0.5s cubic-bezier(0.75,2.0,0,0.75)")
+			])
+		])
+	]
 })
 export class LandingScreenComponent implements OnInit {
 	/**
@@ -78,7 +87,16 @@ export class LandingScreenComponent implements OnInit {
 					this._storyData.push(item);
 				}
 				this._storyData.sort((a, b) => {
-					return a.score > b.score ? -1 : 1;
+					if (a.score > b.score) {
+						return -1;
+					}
+					if (b.score > a.score) {
+						return 1;
+					}
+					if (a.id > b.id) {
+						return -1;
+					}
+					return 1;
 				});
 			})
 		);

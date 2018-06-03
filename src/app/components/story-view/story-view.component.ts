@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from "@angular/animations";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
@@ -10,7 +11,15 @@ import { IApiItem } from "../../services/data.types";
 @Component({
 	selector: "app-story-view",
 	templateUrl: "./story-view.component.html",
-	styleUrls: ["./story-view.component.scss"]
+	styleUrls: ["./story-view.component.scss"],
+	animations: [
+		trigger("loadIn", [
+			transition(":enter", [
+				style({ transform: "translateX(100%)" }),
+				animate("0.5s cubic-bezier(0.75,2.0,0,0.75)")
+			])
+		])
+	]
 })
 export class StoryViewComponent implements OnInit {
 	/**

@@ -15,11 +15,11 @@
   </mat-card>
   <mat-card id="comments-card">
     <mat-card-content>
-      <ng-container *ngFor="let comment of comments">
+      <div *ngFor="let comment of comments" [@loadIn]="comment.id">
         <p class="comment-text" [innerHTML]="comment.text"></p>
         <p class="comment-metadata">{{comment.by}}, {{getTime(comment.time * 1000)}}</p>
         <mat-divider></mat-divider>
-      </ng-container>
+      </div>
     </mat-card-content>
   </mat-card>
 </ng-container>
