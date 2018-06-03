@@ -4,22 +4,24 @@
   </button>
   <span>Story Details</span>
 </mat-toolbar>
-<ng-container *ngIf="story">
-  <mat-card id="story-card">
-    <mat-card-title>
-      {{story.title}}
-    </mat-card-title>
-    <mat-card-subtitle>
-      Posted by {{story.by}}, {{getTime(story.time * 1000)}}
-    </mat-card-subtitle>
-  </mat-card>
-  <mat-card id="comments-card">
-    <mat-card-content>
-      <div *ngFor="let comment of comments" [@loadIn]="comment.id">
-        <p class="comment-text" [innerHTML]="comment.text"></p>
-        <p class="comment-metadata">{{comment.by}}, {{getTime(comment.time * 1000)}}</p>
-        <mat-divider></mat-divider>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</ng-container>
+<section>
+  <ng-container *ngIf="story">
+    <mat-card id="story-card">
+      <mat-card-title>
+        {{story.title}}
+      </mat-card-title>
+      <mat-card-subtitle class="metadata">
+        Posted by {{story.by}}, {{getTime(story.time * 1000)}}
+      </mat-card-subtitle>
+    </mat-card>
+    <mat-card id="comments-card">
+      <mat-card-content>
+        <div *ngFor="let comment of comments" [@loadIn]="comment.id">
+          <p class="comment-text" [innerHTML]="comment.text"></p>
+          <p class="metadata">{{comment.by}}, {{getTime(comment.time * 1000)}}</p>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</section>

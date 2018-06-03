@@ -1,0 +1,18 @@
+#story-card {
+	margin-bottom: 16px;
+}
+
+.metadata {
+	font-style: italic;
+}
+
+#comments-card {
+	mat-card-content > div:not(:first-child) {
+		padding-top: 8px;
+	}
+
+	mat-card-content .metadata {
+		text-align: right;
+		padding-right: 16px;
+	}
+}

@@ -2,3 +2,9 @@
 
 @import "normalize.css";
 @import "~@angular/material/prebuilt-themes/deeppurple-amber";
+
+router-outlet ~ * {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}

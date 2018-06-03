@@ -1,9 +1,9 @@
-import { animate, style, transition, trigger } from "@angular/animations";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import * as timeago from "time-ago";
 
+import { listLoadAnimation } from "../../animations";
 import { DataService } from "../../services/data.service";
 import { IApiItem } from "../../services/data.types";
 
@@ -11,14 +11,7 @@ import { IApiItem } from "../../services/data.types";
 	selector: "app-landing-screen",
 	templateUrl: "./landing-screen.component.html",
 	styleUrls: ["./landing-screen.component.scss"],
-	animations: [
-		trigger("loadIn", [
-			transition(":enter", [
-				style({ transform: "translateX(100%)" }),
-				animate("0.5s cubic-bezier(0.75,2.0,0,0.75)")
-			])
-		])
-	]
+	animations: [listLoadAnimation]
 })
 export class LandingScreenComponent implements OnInit {
 	/**

@@ -2,7 +2,7 @@
   <span>Hacker News Example</span>
 </mat-toolbar>
 <mat-list>
-  <mat-list-item *ngFor="let story of storyData" [routerLink]="'/story/' + story.id" [@loadIn]="story.id">
+  <mat-list-item *ngFor="let story of storyData" [routerLink]="'/story/' + story.id" [@listLoadAnimation]="story.id">
     <span class="score-avatar" matListAvatar>{{story.score}}</span>
     <h4 matLine>{{story.title}}</h4>
     <p matLine>Posted by {{story.by}} {{getTime(story.time * 1000)}}, with {{story.descendants}} comments</p>
