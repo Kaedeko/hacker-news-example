@@ -16,11 +16,12 @@ This project was intitially generated with [Angular CLI](https://github.com/angu
 | CSS-in-JS                          | ⏳   |
 | Data Pagination                    | ❌   |
 
-| Feature Checklist                                 |     |
-| ------------------------------------------------- | --- |
-| List of "Best Stories"                            | ✅   |
-| Allow viewing of top level comments on each story | ✅   |
-| Allow viewing of child comments on each story     | ❌   |
+| Feature Checklist                                         |     |
+| --------------------------------------------------------- | --- |
+| List of "Best Stories"                                    | ✅   |
+| Display title, author, score and comment count of stories | ✅   |
+| Allow viewing of top level comments on each story         | ✅   |
+| Allow viewing of child comments on each story             | ❌   |
 
 
 ## Development server
