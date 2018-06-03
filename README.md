@@ -9,13 +9,13 @@ This project was intitially generated with [Angular CLI](https://github.com/angu
 | Typescript Usage                                  | ✅   |
 | List of "Best Stories"                            | ✅   |
 | Allow viewing of top level comments on each story | ✅   |
-| Customised CSS                                    | ❌   |
+| Customised CSS                                    | ⏳   |
 | Allow viewing of child comments on each story     | ❌   |
-| Transition animations                             | ❌   |
+| Transition animations                             | ✅   |
 | Unit testing                                      | ❌   |
 | End-to-end testing                                | ❌   |
-| Use of Sass specific functionality                | ❌   |
-| CSS-in-JS                                         | ❌   |
+| Use of Sass specific functionality                | ⏳   |
+| CSS-in-JS                                         | ⏳   |
 | Data Pagination                                   | ❌   |
 
 ## Development server
